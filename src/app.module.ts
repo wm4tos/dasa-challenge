@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { HealthModule } from './modules/health/health.module';
 import { PatientModule } from './modules/patient/patient.module';
 import { DoctorModule } from './modules/doctor/doctor.module';
 import { RequestModule } from './modules/request/request.module';
@@ -7,6 +8,7 @@ import { join } from 'path';
 
 @Module({
   imports: [
+    HealthModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'mysql',
