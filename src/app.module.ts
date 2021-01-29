@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PatientModule } from './modules/patient/patient.module';
 import { DoctorModule } from './modules/doctor/doctor.module';
+import { RequestModule } from './modules/request/request.module';
 import { join } from 'path';
 
 @Module({
@@ -19,6 +20,7 @@ import { join } from 'path';
     }),
     PatientModule,
     DoctorModule,
+    RequestModule,
   ],
   controllers: [],
   providers: [],
