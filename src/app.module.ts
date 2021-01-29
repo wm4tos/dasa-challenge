@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PatientModule } from './modules/patient/patient.module';
+import { DoctorModule } from './modules/doctor/doctor.module';
 import { join } from 'path';
 
 @Module({
@@ -17,6 +18,7 @@ import { join } from 'path';
       autoLoadEntities: true,
     }),
     PatientModule,
+    DoctorModule,
   ],
   controllers: [],
   providers: [],
