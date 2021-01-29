@@ -8,6 +8,7 @@
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "docker:run": "docker-compose up",
     "docker:build": "docker build . -t wricke/dasa_challenge",
     "start": "nest start",
     "start:dev": "nest start --watch",
