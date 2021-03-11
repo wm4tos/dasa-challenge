@@ -15,18 +15,17 @@ import { IRemoveDoctorUseCase } from './use-cases/delete-doctor.use-case';
 import { IReadDoctorUseCase } from './use-cases/read-doctor.use-case';
 import { IUpdateDoctorUseCase } from './use-cases/update-doctor.use-case';
 
-type Create = ICreateDoctorUseCase;
-type Read = IReadDoctorUseCase;
-type Update = IUpdateDoctorUseCase;
-type Remove = IRemoveDoctorUseCase;
-
 @Controller('doctor')
 export class DoctorController {
   constructor(
-    @Inject('CreateDoctorUseCase') private readonly createUseCase: Create,
-    @Inject('UpdateDoctorUseCase') private readonly updateUseCase: Update,
-    @Inject('RemoveDoctorUseCase') private readonly removeUseCase: Remove,
-    @Inject('ReadDoctorUseCase') private readonly readUseCase: Read,
+    @Inject('CreateDoctorUseCase')
+    private readonly createUseCase: ICreateDoctorUseCase,
+    @Inject('ReadDoctorUseCase')
+    private readonly readUseCase: IReadDoctorUseCase,
+    @Inject('UpdateDoctorUseCase')
+    private readonly updateUseCase: IUpdateDoctorUseCase,
+    @Inject('RemoveDoctorUseCase')
+    private readonly removeUseCase: IRemoveDoctorUseCase,
   ) {}
 
   @Get()
@@ -41,9 +40,7 @@ export class DoctorController {
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    const doctor = await this.readUseCase.execute({ id });
-
-    return doctor;
+    return this.readUseCase.execute({ id });
   }
 
   @Put(':id')
