@@ -7,7 +7,7 @@ import { CreateDoctorDto } from '../dto/create-doctor.dto';
 import { Injectable } from '@nestjs/common';
 
 type Param = CreateDoctorDto;
-type Return = Doctor;
+type Return = Promise<Param & Doctor>;
 
 export type ICreateDoctorUseCase = IUseCase<Param, Return>;
 
@@ -18,6 +18,6 @@ export class CreateDoctorUseCase implements ICreateDoctorUseCase {
   ) {}
 
   execute(doctor: Param): Return {
-    return this.repository.create(doctor);
+    return this.repository.save(doctor);
   }
 }
