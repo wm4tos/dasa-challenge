@@ -9,8 +9,10 @@ import {
   Inject,
 } from '@nestjs/common';
 import { CreateDoctorDto } from './dto/create-doctor.dto';
+import { CreateDoctorsDto } from './dto/create-doctors.dto';
 import { UpdateDoctorDto } from './dto/update-doctor.dto';
 import { ICreateDoctorUseCase } from './use-cases/create-doctor.use-case';
+import { ICreateDoctorsUseCase } from './use-cases/create-doctors.use-case';
 import { IRemoveDoctorUseCase } from './use-cases/delete-doctor.use-case';
 import { IReadDoctorUseCase } from './use-cases/read-doctor.use-case';
 import { IUpdateDoctorUseCase } from './use-cases/update-doctor.use-case';
@@ -26,6 +28,8 @@ export class DoctorController {
     private readonly updateUseCase: IUpdateDoctorUseCase,
     @Inject('RemoveDoctorUseCase')
     private readonly removeUseCase: IRemoveDoctorUseCase,
+    @Inject('CreateDoctorsUseCase')
+    private readonly bulkUseCase: ICreateDoctorsUseCase,
   ) {}
 
   @Get()
@@ -36,6 +40,11 @@ export class DoctorController {
   @Post()
   create(@Body() createDoctorDto: CreateDoctorDto) {
     return this.createUseCase.execute(createDoctorDto);
+  }
+
+  @Post('bulk')
+  bulk(@Body() { doctors }: CreateDoctorsDto) {
+    return this.bulkUseCase.execute(doctors);
   }
 
   @Get(':id')

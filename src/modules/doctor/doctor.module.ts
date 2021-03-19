@@ -6,12 +6,14 @@ import { CreateDoctorUseCase } from './use-cases/create-doctor.use-case';
 import { UpdateDoctorUseCase } from './use-cases/update-doctor.use-case';
 import { RemoveDoctorUseCase } from './use-cases/delete-doctor.use-case';
 import { ReadDoctorUseCase } from './use-cases/read-doctor.use-case';
+import { CreateDoctorsUseCase } from './use-cases/create-doctors.use-case';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Doctor])],
   controllers: [DoctorController],
   providers: [
     CreateDoctorUseCase,
+    CreateDoctorsUseCase,
     UpdateDoctorUseCase,
     RemoveDoctorUseCase,
     ReadDoctorUseCase,
